@@ -17,10 +17,10 @@ type SiteSettings = {
 };
 
 const DEFAULT_ABOUT_EN =
-  "SAUDI AFAQ is a contracting company brand focused on delivering professional construction and project solutions across Saudi Arabia. Our goal is to build strong client relationships through quality workmanship, responsible project execution and attention to detail.";
+  "SAUDI AFAQ is a general contracting company brand focused on delivering professional construction and project solutions across Saudi Arabia. Our services include building construction, landscaping and stonework. Our goal is to build strong client relationships through quality workmanship, responsible project execution and attention to detail.";
 
 const DEFAULT_ABOUT_AR =
-  "آفاق السعودية شركة مقاولات تهدف إلى تقديم حلول احترافية في البناء وتنفيذ المشاريع في جميع أنحاء المملكة العربية السعودية. نسعى إلى بناء علاقات قوية مع عملائنا من خلال جودة العمل والتنفيذ المسؤول والاهتمام بالتفاصيل.";
+  "آفاق السعودية شركة مقاولات عامة تهدف إلى تقديم حلول احترافية في البناء وتنفيذ المشاريع في جميع أنحاء المملكة العربية السعودية. تشمل خدماتنا أعمال البناء وتنسيق الحدائق والأعمال الحجرية. نسعى إلى بناء علاقات قوية مع عملائنا من خلال جودة العمل والتنفيذ المسؤول والاهتمام بالتفاصيل.";
 
 const features = {
   en: [
@@ -81,6 +81,7 @@ export default function About() {
     <section
       id="about"
       dir={isArabic ? "rtl" : "ltr"}
+      aria-labelledby="about-heading"
       className="bg-white px-5 py-24"
     >
       <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
@@ -89,7 +90,13 @@ export default function About() {
         <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85"
-            alt="Modern architectural construction"
+            alt={
+              isArabic
+                ? "تصميم معماري حديث وأعمال البناء في المملكة العربية السعودية"
+                : "Modern architecture and building construction in Saudi Arabia"
+            }
+            loading="lazy"
+            decoding="async"
             className="h-[420px] w-full rounded-xl object-cover"
           />
 
@@ -110,10 +117,13 @@ export default function About() {
             {isArabic ? "عن شركتنا" : "About Our Company"}
           </span>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight text-[#101D30] md:text-5xl">
+          <h2
+            id="about-heading"
+            className="mt-4 text-3xl font-bold leading-tight text-[#101D30] md:text-5xl"
+          >
             {isArabic
-              ? "نبني الثقة من خلال الجودة والتميز"
-              : "Building Trust Through Quality & Excellence"}
+              ? "شركة آفاق السعودية للمقاولات العامة"
+              : "SAUDI AFAQ – General Contracting Company in Saudi Arabia"}
           </h2>
 
           <p className="mt-6 whitespace-pre-line leading-8 text-gray-600">
@@ -145,7 +155,7 @@ export default function About() {
               <p className="mt-2 text-xs leading-6 text-gray-500">
                 {isArabic
                   ? "تقديم حلول موثوقة لتنفيذ المشاريع."
-                  : "Deliver dependable project solutions."}
+                  : "Deliver dependable construction and project solutions."}
               </p>
             </div>
 
