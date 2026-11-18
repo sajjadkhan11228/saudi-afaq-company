@@ -89,6 +89,7 @@ export default function Hero() {
   return (
     <section
       id="home"
+      aria-labelledby="hero-title"
       dir={isArabic ? "rtl" : "ltr"}
       className="relative flex min-h-[680px] items-center overflow-hidden bg-[#101D30] text-white"
     >
@@ -98,12 +99,14 @@ export default function Hero() {
         style={{
           backgroundImage: `url("${heroImage}")`,
         }}
-        role="img"
-        aria-label="SAUDI AFAQ construction project"
+        aria-hidden="true"
       />
 
       {/* Background Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#101D30]/85 via-[#101D30]/50 to-[#101D30]/15" />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-[#101D30]/85 via-[#101D30]/50 to-[#101D30]/15"
+        aria-hidden="true"
+      />
 
       {/* Hero Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-24">
@@ -111,22 +114,34 @@ export default function Hero() {
 
           {/* Saudi Badge */}
           <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[#C9A45C]/50 bg-[#101D30]/60 px-5 py-3 text-sm text-[#E5C783] backdrop-blur-sm">
-            <span className="animate-pulse text-xl">🇸🇦</span>
+            <span className="animate-pulse text-xl" aria-hidden="true">
+              🇸🇦
+            </span>
             {isArabic
               ? "شركة مقاولات في المملكة العربية السعودية"
-              : "CONTRACTING COMPANY IN SAUDI ARABIA"}
+              : "GENERAL CONTRACTING COMPANY IN SAUDI ARABIA"}
           </div>
 
-          {/* Dynamic Heading */}
-          <h1 className="whitespace-pre-line text-5xl font-bold leading-tight md:text-7xl">
+          {/* Main SEO Heading */}
+          <h1
+            id="hero-title"
+            className="whitespace-pre-line text-5xl font-bold leading-tight md:text-7xl"
+          >
             {heading}
           </h1>
 
-          {/* Description */}
-          <p className="mt-7 max-w-xl text-base leading-8 text-gray-200 md:text-lg">
+          {/* SEO Subheading */}
+          <h2 className="mt-5 text-xl font-semibold leading-relaxed text-[#E5C783] md:text-2xl">
             {isArabic
-              ? "نقدم حلولاً احترافية في المقاولات والبناء، مع التركيز على الجودة والثقة والتميز في جميع أنحاء المملكة العربية السعودية."
-              : "Delivering quality, trust and excellence through professional contracting and construction solutions across Saudi Arabia."}
+              ? "خدمات المقاولات العامة والبناء في المملكة العربية السعودية"
+              : "General Contracting & Construction Services in Saudi Arabia"}
+          </h2>
+
+          {/* SEO Description */}
+          <p className="mt-7 max-w-2xl text-base leading-8 text-gray-200 md:text-lg">
+            {isArabic
+              ? "تقدم شركة آفاق السعودية للمقاولات خدمات احترافية في بناء المباني وتنسيق الحدائق وأعمال الحجر، مع التركيز على الجودة والثقة والتميز في جميع أنحاء المملكة العربية السعودية."
+              : "SAUDI AFAQ COMPANY provides professional general contracting and construction services in Saudi Arabia, including building construction, garden landscaping and stonework. We focus on quality, reliability and professional project delivery."}
           </p>
 
           {/* Main Buttons */}
@@ -135,6 +150,7 @@ export default function Hero() {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={isArabic ? "تواصل معنا عبر واتساب" : "Contact us on WhatsApp"}
               className="inline-flex items-center gap-3 rounded-md bg-green-600 px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-700"
             >
               <MessageCircle size={21} />
