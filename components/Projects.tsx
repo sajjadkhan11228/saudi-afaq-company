@@ -81,6 +81,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
+      aria-labelledby="projects-heading"
       dir={isArabic ? "rtl" : "ltr"}
       className="relative overflow-hidden bg-[#F7F7F5] py-20 md:py-28"
     >
@@ -94,22 +95,29 @@ export default function Projects() {
             <span className="h-px w-8 bg-[#C9A45C]" />
           </span>
 
-          <h2 className="mb-5 text-3xl font-bold leading-tight text-[#101D30] sm:text-4xl md:text-5xl">
+          <h2
+            id="projects-heading"
+            className="mb-5 text-3xl font-bold leading-tight text-[#101D30] sm:text-4xl md:text-5xl"
+          >
             {isArabic
-              ? "نماذج من أعمالنا ومشاريعنا"
-              : "Our Work & Featured Projects"}
+              ? "مشاريع المقاولات والبناء وأعمالنا المميزة"
+              : "Construction Projects & General Contracting Work in Saudi Arabia"}
           </h2>
 
           <p className="mx-auto max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
             {isArabic
-              ? "نقدم خدمات البناء والتشييد وتنسيق الحدائق وأعمال الحجر والتشطيبات بجودة واهتمام بالتفاصيل."
-              : "Explore our range of construction, garden landscaping, stonework and finishing services, with a focus on quality and detail."}
+              ? "اكتشف مشاريع شركة آفاق السعودية في بناء المباني وتنسيق الحدائق وأعمال الحجر والتشطيبات، مع الالتزام بالجودة والاهتمام بالتفاصيل."
+              : "Explore SAUDI AFAQ COMPANY projects in building construction, garden landscaping, stonework and finishing services across Saudi Arabia. We focus on quality workmanship and attention to detail."}
           </p>
         </div>
 
         {/* Loading */}
         {loading && (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+            aria-label={isArabic ? "جاري تحميل المشاريع" : "Loading projects"}
+            aria-busy="true"
+          >
             {[1, 2, 3].map((item) => (
               <div
                 key={item}
@@ -137,22 +145,30 @@ export default function Projects() {
 
               const image = project.image_urls?.[0];
 
+              const imageAlt = isArabic
+                ? `${title} - مشروع من أعمال شركة آفاق السعودية للمقاولات`
+                : `${title} - ${project.category || "Construction Project"} by SAUDI AFAQ COMPANY in Saudi Arabia`;
+
               return (
                 <article
                   key={project.id}
                   className="group overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
-                  {/* Image */}
+                  {/* Project Image */}
                   <div className="relative h-64 overflow-hidden bg-gray-200 sm:h-72">
                     {image ? (
                       <img
                         src={image}
-                        alt={title}
+                        alt={imageAlt}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#101D30] to-[#344967]">
+                      <div
+                        className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#101D30] to-[#344967]"
+                        aria-hidden="true"
+                      >
                         <Icon
                           size={65}
                           className="text-[#D5B36A]"
@@ -161,22 +177,32 @@ export default function Projects() {
                       </div>
                     )}
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#101D30]/75 via-transparent to-transparent" />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-[#101D30]/75 via-transparent to-transparent"
+                      aria-hidden="true"
+                    />
 
                     <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
                       <span className="rounded-full border border-white/30 bg-black/30 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md">
-                        {project.category || (isArabic ? "مشاريعنا" : "Our Projects")}
+                        {project.category ||
+                          (isArabic ? "مشاريعنا" : "Our Projects")}
                       </span>
 
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C9A45C] text-[#101D30] transition-transform duration-300 group-hover:rotate-45">
+                      <span
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C9A45C] text-[#101D30] transition-transform duration-300 group-hover:rotate-45"
+                        aria-hidden="true"
+                      >
                         <ArrowUpRight size={21} />
                       </span>
                     </div>
                   </div>
 
-                  {/* Content */}
+                  {/* Project Content */}
                   <div className="p-6 sm:p-7">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#C9A45C]/15 text-[#A77D32]">
+                    <div
+                      className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#C9A45C]/15 text-[#A77D32]"
+                      aria-hidden="true"
+                    >
                       <Icon size={25} strokeWidth={1.8} />
                     </div>
 
@@ -187,8 +213,8 @@ export default function Projects() {
                     <p className="text-sm leading-7 text-gray-600">
                       {description ||
                         (isArabic
-                          ? "نقدم أعمالنا بجودة واهتمام بالتفاصيل."
-                          : "Quality work with attention to every detail.")}
+                          ? "نقدم أعمالنا بجودة واهتمام بالتفاصيل في جميع مشاريعنا."
+                          : "SAUDI AFAQ delivers quality construction work with attention to detail across every project in Saudi Arabia.")}
                     </p>
 
                     <div className="mt-6 h-px w-full bg-gray-100" />
@@ -216,19 +242,22 @@ export default function Projects() {
             <Building2
               size={45}
               className="mx-auto mb-4 text-[#C9A45C]"
+              aria-hidden="true"
             />
+
             <h3 className="text-xl font-bold text-[#101D30]">
               {isArabic ? "لا توجد مشاريع حالياً" : "Projects Coming Soon"}
             </h3>
+
             <p className="mt-2 text-sm text-gray-500">
               {isArabic
                 ? "سيتم عرض مشاريعنا هنا قريباً."
-                : "Our projects will be displayed here soon."}
+                : "Our building construction, landscaping and stonework projects will be displayed here soon."}
             </p>
           </div>
         )}
 
-        {/* Bottom CTA */}
+        {/* Contact CTA */}
         <div className="mt-14 text-center">
           <a
             href="https://wa.me/966550748345"
