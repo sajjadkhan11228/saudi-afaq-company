@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     "Construction Saudi Arabia",
     "General Contracting",
   ],
+  verification: {
+    google: "rtodlz94CZn0IbwKXp5Gq_VPtUpwhAhqi6f9iNCQAq8",
+  },
 };
 
 export default function RootLayout({
