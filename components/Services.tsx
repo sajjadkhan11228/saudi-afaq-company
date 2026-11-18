@@ -73,6 +73,7 @@ export default function Services() {
     <section
       id="services"
       dir={isArabic ? "rtl" : "ltr"}
+      aria-labelledby="services-heading"
       className="bg-white px-5 py-24"
     >
       <div className="mx-auto max-w-7xl">
@@ -81,19 +82,27 @@ export default function Services() {
             {isArabic ? "ماذا نقدم" : "What We Do"}
           </span>
 
-          <h2 className="mt-4 text-3xl font-bold text-[#101D30] md:text-5xl">
-            {isArabic ? "خدماتنا الاحترافية" : "Our Professional Services"}
+          <h2
+            id="services-heading"
+            className="mt-4 text-3xl font-bold text-[#101D30] md:text-5xl"
+          >
+            {isArabic
+              ? "خدمات المقاولات والبناء في المملكة العربية السعودية"
+              : "Construction & General Contracting Services in Saudi Arabia"}
           </h2>
 
           <p className="mt-5 leading-8 text-gray-500">
             {isArabic
-              ? "حلول متكاملة في المقاولات والبناء لتلبية احتياجات عملائنا في جميع أنحاء المملكة العربية السعودية."
-              : "Comprehensive contracting and construction solutions designed to meet the needs of our clients across Saudi Arabia."}
+              ? "تقدم شركة آفاق السعودية حلولاً متكاملة في المقاولات العامة وأعمال البناء والتشييد وتنسيق الحدائق والأعمال الحجرية، لتلبية احتياجات عملائنا في جميع أنحاء المملكة العربية السعودية."
+              : "SAUDI AFAQ COMPANY provides professional general contracting and construction services in Saudi Arabia, including building construction, landscaping and stonework. We focus on quality workmanship and dependable project execution."}
           </p>
         </div>
 
         {loading ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            aria-label={isArabic ? "جاري تحميل الخدمات" : "Loading services"}
+          >
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div
                 key={item}
@@ -126,12 +135,12 @@ export default function Services() {
                 : service.description_en;
 
               return (
-                <div
+                <article
                   key={service.id}
                   className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-[#C9A45C] hover:shadow-xl"
                 >
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-[#101D30] text-[#D5B36A] transition group-hover:bg-[#C9A45C] group-hover:text-[#101D30]">
-                    <Icon size={27} />
+                    <Icon size={27} aria-hidden="true" />
                   </div>
 
                   <span className="text-xs font-semibold text-[#B28A45]">
@@ -145,7 +154,7 @@ export default function Services() {
                   <p className="mt-4 text-sm leading-7 text-gray-500">
                     {description}
                   </p>
-                </div>
+                </article>
               );
             })}
           </div>
